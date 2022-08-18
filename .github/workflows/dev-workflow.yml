@@ -103,8 +103,6 @@ jobs:
         with: 
           name: code
           path: .
-      - name: run docker-compose
-        run: docker-compose up -d
       - name: run Smoke-Test
         run: chmod +x ci/smoke-test.sh && ci/smoke-test.sh
 
