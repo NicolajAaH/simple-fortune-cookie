@@ -1,0 +1,12 @@
+FROM golang:1.16-alpine AS builder
+WORKDIR app
+COPY . .
+RUN go build . 
+
+# light
+FROM alpine:3.11.3
+COPY --from=builder /app .
+EXPOSE 8080
+
+RUN chmod +x ./frontend
+ENTRYPOINT ["./frontend"]
