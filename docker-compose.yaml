@@ -6,6 +6,7 @@ networks:
 
 services: 
   frontend:
+    container_name: frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -13,6 +14,7 @@ services:
       - network_1
 
   backend:
+    container_name: backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -21,6 +23,7 @@ services:
       - network_2
   
   redis:
+    container_name: redis
     image: redis:alpine3.16
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
