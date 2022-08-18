@@ -98,9 +98,24 @@ jobs:
         run: chmod +x ci/build-docker-frontend.sh && ci/build-docker-frontend.sh
       - name: Push docker
         run: chmod +x ci/push-docker.sh && ci/push-docker.sh
+
+  Smoke-Test:
+    runs-on: ubuntu-latest
+    needs: [Docker-image]
+    steps:
+      - name: Download Repo
+        uses: actions/download-artifact@v3
+        with: 
+          name: code
+          path: .
+      - name: run docker-compose
+        run: docker-compose up -d
+      - name: run Smoke-Test
+        run: chmod +x ci/smoke-test.sh && ci/smoke-test.sh
+
   Deploy:
     runs-on: prod-runner
-    needs: [Docker-image]
+    needs: [Smoke-Test]
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v3
