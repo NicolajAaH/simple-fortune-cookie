@@ -21,6 +21,7 @@ jobs:
           path: |
             .
             !.git
+            !.gitgnore
   Build:
     runs-on: ubuntu-latest
     needs: Clone-down
@@ -40,6 +41,7 @@ jobs:
           path:  |
             .
             !.git
+            !.gitgnore
       - name: Upload frontend
         uses: actions/upload-artifact@v2
         with:
@@ -47,6 +49,7 @@ jobs:
           path:  |
             frontend/frontend
             !.git
+            !.gitgnore
       - name: Upload backend
         uses: actions/upload-artifact@v2
         with:
@@ -54,6 +57,7 @@ jobs:
           path:  |
             backend/backend
             !.git
+            !.gitgnore
   Test:
     runs-on: ubuntu-latest
     needs: Build
