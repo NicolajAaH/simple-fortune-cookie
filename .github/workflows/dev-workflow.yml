@@ -110,7 +110,7 @@ jobs:
 
   Deploy:
     runs-on: dev-runner
-    needs: [Docker-image]
+    needs: [Smoke-Test]
     steps:
       - name: Download Repo
         uses: actions/download-artifact@v2
