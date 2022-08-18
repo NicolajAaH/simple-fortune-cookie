@@ -1,0 +1,12 @@
+FROM golang:1.16-alpine AS builder
+WORKDIR app
+COPY . app
+RUN chmod +x ./frontend
+
+# light
+FROM alpine:3.11.3
+COPY --from=builder /app .
+
+EXPOSE 8080
+# executable
+CMD go run .
